@@ -5,9 +5,6 @@ import Perfil from  './pages/perfil.js';
 
 let ultimaPagina = '';
 
-/**
- * Função responsável por identificar mudança no hash e chamar a página de acordo
- */
 function trocaPagina() {
   const id = JSON.parse(localStorage.getItem('usuarioLogado'));
   const bancoDeDados = JSON.parse(localStorage.getItem('colecaoDeUsuarios')); 
@@ -47,11 +44,7 @@ function trocaPagina() {
 }
 
 function init() {
-  /* adiciona um observador de eventos que chama o trocaPagina() */
   window.addEventListener('hashchange', trocaPagina);
-  /* é necessário chamar a função aqui, para que uma página seja exibida
-  na primeira vez que a pessoa entrar no site, pois o hash nesse momento
-  nunca foi alterado, então o observador de cima não será ativado */
   trocaPagina();
 }
 

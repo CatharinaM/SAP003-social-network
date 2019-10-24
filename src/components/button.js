@@ -3,7 +3,7 @@ function Button(props) {
     <button 
     data-id="${props.id}"
     class="primary-button"
-    class="${props.class}"
+    class= "${props.class}"
      onclick="button.handleClick(event, ${props.onClick})" >
      ${props.title}
      </button>

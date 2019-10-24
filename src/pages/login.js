@@ -2,7 +2,6 @@ import Button from '../components/button.js';
 import Input from '../components/input.js';
 
 window.validarLogin = (colecao, usuario) => {
-  // console.log(colecao)
   for (let i = 0; i < colecao.length; i += 1) {
     if (usuario.emailDoCadastro === colecao[i].email
       && usuario.passwordDoCadastro === colecao[i].password) {
@@ -35,17 +34,14 @@ function enviarLogin() {
 
 }
 
-// const email = document.querySelector('js-email-input').value
-// const password = document.querySelector('js-password-input').value
-// alert(`${email}, ${password}`);
-// localStorage.setItem("auth", {email, password})
-// localStorage.getItem
-
 function Login() {
   const template = `
   
   <div class="container-login">
   <img src="engre5.png" alt="">
+  
+
+  <div class="container-login2">
   <h1 class= "título-login">Escamb</h1>
   <h3> Bem-vindo(a)!</h3>
   <form> 
@@ -62,14 +58,18 @@ function Login() {
     type: 'password',
   })}
 
+  <div class='js-botao-login'>
    ${Button({
     id: 'Botão',
+    // class:'js-botao-login',
     title: 'Enviar',
     onClick: enviarLogin,
   })}
+  </div>
 
     </form>
     <p class="mensagem-login">Não tem conta? <a href="#cadastro">Cadastre-se</a> </p>
+    </div>
     </div>
 
   `;

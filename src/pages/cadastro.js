@@ -26,13 +26,13 @@ function enviarCadastro() {
   localStorage.setItem('colecaoDeUsuarios', JSON.stringify(colecao));
   localStorage.setItem('usuarioLogado', JSON.stringify(novoUsuario));
   
-  // console.log(colecao)
   
   window.location.hash = '#login';
 }
 
 function Cadastro() {
   const template = `
+  <img src="" alt="">
   <div class="container-cadastro">
   <h1 class="título-cadastro">Cadastre-se:</h1>
   <form class="cadastro"> 
@@ -61,11 +61,14 @@ function Cadastro() {
     type: 'password',
   })}
   
+  <div class='js-botao-cadastrar'>
      ${Button({
     id: 'botãoCadastro',
+    //class: 'js-botao-cadastrar',
     title: 'Cadastrar',
     onClick: enviarCadastro,
   })}
+  </div>
   
     </form>
     

@@ -4,33 +4,34 @@ import Textarea from '../components/textarea.js';
 import Card from '../components/card.js';
 //import Menu from '../components/menu.js';
 
-// function exibirMenu(){
-// var veri = 1;
-// var trigger = document.getElementById('menu-trigger').addEventListener("click",function(){
-// var menu = document.getElementById('menu-hidde');
-// if (veri == 1) {
-// menu.style.left = "0px";
-// veri = 0;
-// }else{
-// menu.style.left = "-100%";
-// veri = 1;
-//  }
-// }
- 
-// window.validarPublicacao = () => {
-//     if (home.imprimirPosts(posts) != null) {
-//       return true ;
-//     }
-//   }
- 
 
+
+ /*function comentarPublicação(){
+  const idPost = event.target.dataset.id
+  const textComentario =  document.querySelector('.js-mensagem-textarea').value;
+  if (text) {  
+    const posts =  home.bancoDeDados[home.id].post;
+    const postIndex = post.findIndex(elem => elem.id == idPost);
+    posts[postIndex].comentario.push(textComentario)
+    
+
+    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.bancoDeDados));
+
+    home.imprimirComentario(textComentario);
+ }
+
+ function imprimirComentario (coment) {
+  document.querySelector('.resp-comentario').innerHTML = '';
+
+  document.querySelector('.resp-comentario').innerHTML += window.home.template(elem.postagem, elem.id))
+ }*/
+ 
 function enviarPublicacao(){
   const text = document.querySelector('.js-mensagem-textarea').value;
-  console.log(text)
-  if (text) {
-    const posts = home.bancoDeDados[home.id].post;
+   if (text) {   //isso que faz só ser publicado quando tiver algo escrito (antes só clicando em publicar já aparecia o card)
+    const posts = home.bancoDeDados[home.id].post; // *aqui e lá embaixo a mesma (não entendi mto bem)
 
-  const mensagem ={
+    const mensagem ={
     postagem: document.querySelector('.js-mensagem-textarea').value,
     likes: 0,
     privacidade: 'publico',
@@ -38,31 +39,32 @@ function enviarPublicacao(){
     comentario:[]
   }
 
-   posts.push(mensagem);
+   posts.unshift(mensagem);
 
    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.bancoDeDados));
 
    home.imprimirPosts(posts);
-   document.querySelector('.js-mensagem-textarea').value = '';
-  }
-  
-      
+   document.querySelector('.js-mensagem-textarea').value = ''; //isso que faz não ficar a mensagem no textarea depois de publicar
+  }        
 }
 
 
 function imprimirPosts (posts) {
-  document.querySelector('.resp').innerHTML = '';
+   document.querySelector('.resp').innerHTML = '';  //isso que faz não ficar a mensagem no textarea depois de publicar
 
-   posts.map(elem => 
+   posts.map( elem => 
       document.querySelector('.resp').innerHTML += window.home.template(elem.postagem, elem.id))
 }
 
- function deletarPublicação(event){
+
+ function deletarPublicacao(event){
    const idPost = event.target.dataset.id
-  
-  let posts = home.bancoDeDados[home.id].post;
+  console.log(home)
+  console.log(home.id)
+  console.log(home.banco)
+  let posts = home.bancoDeDados[home.id].post; // *essa parte que nãoe entendi mto bem (é o caminho para chegar a post?) (essa variavel tb está na fç enviarPublicacao)
   let deletando = posts.filter(elem => {
-    return  elem.id != idPost
+    return  elem.id != idPost // na hr entendi, agr não mto
   })
 
   
@@ -73,76 +75,37 @@ function imprimirPosts (posts) {
    home.imprimirPosts(deletando);
   }
 
-
-
-//  function salvarEdicao(event){
-//   const idPost = event.target.dataset.id
-//   const textoEditado = "";
-  
-//   let posts = home.bancoDeDados[home.id].post;
-//   let salvando = posts.map(elem => {
-//     if(elem.id === idPost)
-//     return  elem.postagem == textoEditado
-//   })
-
-  
-//   home.bancoDeDados[home.id].post = salvando
-
-//   window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.bancoDeDados));
-
-//    home.imprimirPosts(salvando);
-
-//  } 
-
-
-function editarPublicação (event){
+function editarPublicacao (event){
   const postId = event.target.dataset.id;
-  const paragrafo = document.querySelector(`p[data-id='${postId}']`);
+  const paragrafo = document.querySelector(`p[data-id='${postId}']`); // estudar isso
   paragrafo.contentEditable  = 'true';
-  paragrafo.focus()
+  paragrafo.focus() // estudar esses: focus (é para dar o foco, quando você clica em um campo para digitar algo.) e onblur (é para salvar quando tirar do foco)
   paragrafo.onblur = () => {
     paragrafo.contentEditable  = 'false';
-    const postIndex = home.bancoDeDados[home.id].post.findIndex(post => post.id == postId)
-    console.log(postIndex)
-    home.bancoDeDados[home.id].post[postIndex].postagem = paragrafo.textContent;
+// tentei if/else ou mudando a ordem das duas linhas acima e não pegou (não achei a ordem mto uau)
     
-    // = paragrafo.textContent;
-
+    const postIndex = home.bancoDeDados[home.id].post.findIndex(post => post.id == postId) // estudar findIndex: retorna o índice no array do primeiro elemento que satisfizer a função de teste provida. Caso contrário, retorna -1, indicando que nenhum elemento passou no teste.
+    home.bancoDeDados[home.id].post[postIndex].postagem = paragrafo.textContent; // estudar textContent: serve para obter o conteúdo de texto de um elemento
+    // *não entendi mto bem essas duas linhas acima
     window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.bancoDeDados));
   }
-//   //contentditable
-//   if(document.querySelector('.resp').contentEditable = 'true'){
-//     salvarEdicao(event)
-//   }
-//   //colocar botão de salvar
-//   // const salvarEdicao = document.createElement('BUTTON');
-//   // salvarEdicao.innerHTML = 'Salvar';
-// //ou coloca o botão assim...
-//   const template = `
-//   ${Button({
-//     id: postId,
-//     title: 'Salvar',
-//     onClick: salvarEdicao,
-//   })}`
 }
-
-
 
 function template(postagem, postId){
   const template = `
-  <div class= "container-postagen">
-  <p data-id='${postId}'>${postagem}</p>
+  <div class= 'container-postagen'>
+  <p data-id='${postId}'>${postagem}</p> 
   ${Button({
     id: postId,
     // class: 'js-botao-editar'
     title: 'Editar',
-    onClick: editarPublicação,
+    onClick: editarPublicacao,
   })}
   ${Button({
     id: postId,
     // class: 'js-botao-deletar'
     title: 'Deletar',
-    onClick: deletarPublicação,
+    onClick: deletarPublicacao,
   })}
   ${Button({
     id: 'Botão',
@@ -156,25 +119,11 @@ function template(postagem, postId){
   return `${Card({children: template})}`
 }
 
-
-//INSERIR COMENTÁRIOS AOS POSTS FIXADOS
-// const pegarComentario = JSON.parse(localStorage.getItem('comentarioDoPost'));
-// if (!Array.isArray(pegarComentario)) {
-//   pegarComentario = [];
-// }
-
-// const comentario = 
-
-//  mensagem.comentario
-
-// BOTÃO DO LIKE (USAR O REDUCE?)
-
-
-  
-
 function Home() {
   const template = `
-    <h1>Home Page</h1> 
+  <header class='titulo-header'> <h1>Escamb</h1> </header>
+  <div class="container-home">
+    <h1>Nome do usuário</h1> 
 
     <form> 
 
@@ -184,13 +133,14 @@ function Home() {
     type: 'text',
    })}
 
-
+<div class='js-botao-publicar'>
     ${Button({
       id: 'Botão',
-      // class: 'js-botao-publicar'
+      //class: 'js-botao-publicar'
       title: 'Publicar',
       onClick: enviarPublicacao,
     })}
+  </div>
 
     </form>
 
@@ -198,23 +148,20 @@ function Home() {
     <p></p>
     </article> 
 
+    <article class="resp-comentario">
+    <p></p>
+    </article> 
+
     <p><a href="#login">Sair</a> </p>
     <p><a href="#perfil">Perfil</a> </p>
-
+</div>
   `;
 
   return template;
 }
 
-
-
-
 export default Home;
 
-
-// window.enviarPublicacao = enviarPublicacao
-// window.template = template
-// window.imprimirPosts = imprimirPosts
 
 window.home = {
   template: template,
@@ -232,3 +179,27 @@ window.home = {
   // </ul>
 
 
+//INSERIR COMENTÁRIOS AOS POSTS FIXADOS
+// const pegarComentario = JSON.parse(localStorage.getItem('comentarioDoPost'));
+// if (!Array.isArray(pegarComentario)) {
+//   pegarComentario = [];
+// }
+
+// const comentario = 
+
+//  mensagem.comentario
+
+// BOTÃO DO LIKE (USAR O REDUCE?)
+
+// function exibirMenu(){
+// var veri = 1;
+// var trigger = document.getElementById('menu-trigger').addEventListener("click",function(){
+// var menu = document.getElementById('menu-hidde');
+// if (veri == 1) {
+// menu.style.left = "0px";
+// veri = 0;
+// }else{
+// menu.style.left = "-100%";
+// veri = 1;
+//  }
+// }

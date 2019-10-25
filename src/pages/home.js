@@ -4,26 +4,27 @@ import Textarea from '../components/textarea.js';
 import Card from '../components/card.js';
 //import Menu from '../components/menu.js';
 
-// function exibirMenu(){
-// var veri = 1;
-// var trigger = document.getElementById('menu-trigger').addEventListener("click",function(){
-// var menu = document.getElementById('menu-hidde');
-// if (veri == 1) {
-// menu.style.left = "0px";
-// veri = 0;
-// }else{
-// menu.style.left = "-100%";
-// veri = 1;
-//  }
-// }
 
-// function comentarPublicação(){
-//   const postId = event.target.dataset.id;
-//   const textComentario =  document.querySelector('.js-mensagem-textarea').value;
-//   if (text) {  
-//     const coment =  home.bancoDeDados[home.id].comentario;
-//     coment.push(textComentario)
-// }
+
+ /*function comentarPublicação(){
+  const idPost = event.target.dataset.id
+  const textComentario =  document.querySelector('.js-mensagem-textarea').value;
+  if (text) {  
+    const posts =  home.bancoDeDados[home.id].post;
+    const postIndex = post.findIndex(elem => elem.id == idPost);
+    posts[postIndex].comentario.push(textComentario)
+    
+
+    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.bancoDeDados));
+
+    home.imprimirComentario(textComentario);
+ }
+
+ function imprimirComentario (coment) {
+  document.querySelector('.resp-comentario').innerHTML = '';
+
+  document.querySelector('.resp-comentario').innerHTML += window.home.template(elem.postagem, elem.id))
+ }*/
  
 function enviarPublicacao(){
   const text = document.querySelector('.js-mensagem-textarea').value;
@@ -58,7 +59,9 @@ function imprimirPosts (posts) {
 
  function deletarPublicacao(event){
    const idPost = event.target.dataset.id
-  
+  console.log(home)
+  console.log(home.id)
+  console.log(home.banco)
   let posts = home.bancoDeDados[home.id].post; // *essa parte que nãoe entendi mto bem (é o caminho para chegar a post?) (essa variavel tb está na fç enviarPublicacao)
   let deletando = posts.filter(elem => {
     return  elem.id != idPost // na hr entendi, agr não mto
@@ -145,6 +148,10 @@ function Home() {
     <p></p>
     </article> 
 
+    <article class="resp-comentario">
+    <p></p>
+    </article> 
+
     <p><a href="#login">Sair</a> </p>
     <p><a href="#perfil">Perfil</a> </p>
 </div>
@@ -183,3 +190,16 @@ window.home = {
 //  mensagem.comentario
 
 // BOTÃO DO LIKE (USAR O REDUCE?)
+
+// function exibirMenu(){
+// var veri = 1;
+// var trigger = document.getElementById('menu-trigger').addEventListener("click",function(){
+// var menu = document.getElementById('menu-hidde');
+// if (veri == 1) {
+// menu.style.left = "0px";
+// veri = 0;
+// }else{
+// menu.style.left = "-100%";
+// veri = 1;
+//  }
+// }

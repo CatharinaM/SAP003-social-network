@@ -23,8 +23,10 @@ import Card from '../components/card.js';
  function imprimirComentario (coment) {
   document.querySelector('.resp-comentario').innerHTML = '';
 
-  document.querySelector('.resp-comentario').innerHTML += window.home.template(elem.postagem, elem.id))
- }*/
+  document.querySelector('.resp-comentario').innerHTML += window.home.templateComentario(elem.comentario, elem.id))
+ //OU
+  document.querySelector('.resp-comentario').innerHTML += comentario.textContent
+}*/
  
 function enviarPublicacao(){
   const text = document.querySelector('.js-mensagem-textarea').value;
@@ -91,6 +93,22 @@ function editarPublicacao (event){
   }
 }
 
+
+/*function templateComentario(comentario, postId){
+  const template = `
+  <div class= ''>
+  <p data-id='${postId}'>${comentario}</p> 
+   ${Textarea({
+    class: 'js-mensagem-textarea',
+    placeholder: 'Escreva aqui seu comentário',
+    type: 'text',
+   })}
+  </div>`
+  return `${Card({children: templateComentario})}`
+}*/ 
+  
+
+
 function template(postagem, postId){
   const template = `
   <div class= 'container-postagen'>
@@ -121,9 +139,12 @@ function template(postagem, postId){
 
 function Home() {
   const template = `
-  <header class='titulo-header'> <h1>Escamb</h1> </header>
+  <div class="tam-header">
+  <p class='titulo-header3'></p> <header class='titulo-header'> <h1>Escamb</h1><p class='titulo-header2'></p> </header> 
+  </div>
+
   <div class="container-home">
-    <h1>Nome do usuário</h1> 
+    <h1></h1> 
 
     <form> 
 

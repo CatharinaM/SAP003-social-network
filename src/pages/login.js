@@ -38,17 +38,18 @@ function Login() {
   const template = `
   
   <div class="container-login">
-  <img src="engre5.png" alt="">
+  <img src="maos.png" alt="">
   
 
   <div class="container-login2">
   <h1 class= "título-login">Escamb</h1>
-  <h3> Bem-vindo(a)!</h3>
+  <h2 class= "titulo-descricao"> Sua rede de trocas de objetos e experiências </h2>
+  <h3 class= "titulo-descricao"> Bem-vindo(a)!</h3>
   <form> 
-
+<div class="inputs">
    ${Input({
     class: 'js-email-input',
-    placeholder: 'email',
+    placeholder: 'Email',
     type: 'email',
   })}
 
@@ -65,10 +66,11 @@ function Login() {
     title: 'Enviar',
     onClick: enviarLogin,
   })}
+   </div>
   </div>
 
     </form>
-    <p class="mensagem-login">Não tem conta? <a href="#cadastro">Cadastre-se</a> </p>
+    <p class= "titulo-descricao"">Não tem conta? <a href="#cadastro">Cadastre-se</a> </p>
     </div>
     </div>
 

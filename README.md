@@ -3,7 +3,7 @@
 Neste projeto de Rede Social construímos uma cuja temática é **trocas**, no qual o objetivo é o usuário poder relacionar tanto objetos que queira trocar bem como as experiencias que queira interagir para aprender algo ensinando algo em troca. 
 
 ## Características técnicas 
-Nós utilizamos o HTML5, CCS3, JavaScript(ES6+) e LocalStorage para desenhar estrutura de dados  que relacionar com as funcionalidades geridas nas historias dos usuarios. também foi dado enfoque no mobile first, sendo para isso utilizado flexbox.  
+Nós utilizamos o HTML5, CCS3, JavaScript(ES6+) e LocalStorage para desenhar estrutura de dados  que se relacionou com as funcionalidades geridas nas historias dos usuários. também foi dado enfoque no mobile first, sendo para isso utilizado flexbox.  
 O sistema de rotas  para trocar de uma tela para outra de maneira dinâmica (SPA), foi construído utilizando o hashchange...
 
 ### Planejamento

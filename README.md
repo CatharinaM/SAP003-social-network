@@ -1,93 +1,14 @@
-# Criando uma Rede Social
+# Rede Social - Escamb
+## O projeto
+Neste projeto de Rede Social construímos uma cuja temática é **trocas**, no qual o objetivo é o usuário poder relacionar tanto objetos que queira trocar bem como as experiencias que queira interagir para aprender algo ensinando algo em troca. 
 
-Neste projeto você construirá uma rede social, cuja temática deixaremos ao seu critério.
-
-Aqui estão algumas ideias:
-
-- Alimentação
-- Feminismo
-- Educação
-- Saúde
-- Energias Renováveis
-
-As **caraterísticas técnicas** de sua aplicação serão:
-- Deve ser uma Single-Page Application [SPA](https://dzone.com/articles/how-single-page-web-applications-actually-work)
-- Deve ser desenhada com enfoque [mobile first](https://darwindigital.com/mobile-first-versus-responsive-web-design/)
-- Deve permitir a persistência de dados
-
-Em sua aplicação você usará *HTML5*, *CCS3* ou *SASS*, *JavaScript(ES6+)*, *Firebase* ou *LocalStorage*
-
-## Objetivo
-
-O objetivo deste projeto é construir uma Rede Social, Single-Page Application (SPA), responsiva na qual podemos escrever, ler, atualizar e deletar dados.
-
-Para isso, deverá colocar em prática sua criatividade para gerar ideias que levem a uma solução original e valiosa para o problema elegido, trabalhando em equipe e buscando feedbacks constantes.
-
-Em outras palavras, seguirá se aprofundando no que já aprendeu nos projetos anteriores, mas em particular verá:
+## Características técnicas 
+Nós utilizamos o HTML5, CCS3, JavaScript(ES6+) e LocalStorage para desenhar estrutura de dados  que relacionar com as funcionalidades geridas nas historias dos usuarios. também foi dado enfoque no mobile first, sendo para isso utilizado flexbox.  
+O sistema de rotas  para trocar de uma tela para outra de maneira dinâmica (SPA), foi construído utilizando o hashchange...
 
 ### Planejamento
 
-* Escrever, de maneira colaborativa, as **Definições de pronto** e **Critérios de Aceitação** para cada **História de usuário** que te daremos para este projeto e que deverá considerar em seu planejamento.
-
-* **Priorizar** a implementação de suas funcionalidades, levando em conta o esforço que demandam em relação ao valor que elas têm para o usuário, e executar, em equipe, todas as histórias de usuário dentro do tempo estimado para cada sprint. Levem em conta que ao final de cada sprint deverão ser entregues publicações completamente funcionais.
-
-* Adquirir disciplina na completude, terminando uma história de usuário antes de passar para a seguinte (ou seja, que cumpre com as *Definições de Pronto* e *Critérios de Aceitação* contemplando todos os pontos que são objetivos de aprendizagem para este projeto).
-
-### Desenvolvimento FrontEnd
-
-#### Tecnologias HTML5 e CSS3/SASS
-
-* Aplicar HTML5 semântico em seu projeto.
-* Aplicar e reforçar os conceitos fundamentais de CSS3.
-* Implemetar seletores de classe evitando a redundância de estilos CSS3.
-* Utilizar `flexbox` para alcançar o desenho `mobile first`, implementando um layout que se adapte a **mobile e desktop**
-
-A seguir, te passaremos o layout da tela mobile e desktop que você deverá replicar visualmente e cujo conteúdo, cores e fontes de texto deixaremos a seu critério.
-
-* Tela mobile
-
-    ![mobile](https://user-images.githubusercontent.com/32286663/56174616-ec9f6100-5fb8-11e9-9edb-d5ef7c251d9c.png)
-
-* Tela Desktop
-
-    ![desktop](https://user-images.githubusercontent.com/32286663/56174626-fcb74080-5fb8-11e9-8854-26e8d9c4e25f.png)
-
-#### JavaScript (ES6+)
-
-* Utilizar módulos de ES6 para poder modularizar seu código JavaScript.
-* Reforçar seu conhecimento sobre o uso de Template strings.
-* Reforçar seu conhecimento da manipulação de DOM através do JavaSript.
-* Implementar um sistema de rotas (sem uso de bibliotecas externas) para trocar de uma tela para outra de maneira dinâmica (SPA).
-
-### Persistência de dados
-
-Nos projetos anteriores só consumimos (lemos) dados, por exemplo, através de um arquivo `json` ou utilizando `fetch`.
-
-Neste projeto você desenhará a estrutura destes dados, a forma de consultá-los, atualizá-los, modificá-los e eliminá-los segundo os requerimentos do usuário. Para isto você utilizará `Firestore` do `Firebase` ou `LocalStorage` uma `Web Storage API`.
-
-#### Firebase
-
-O objetivo de usar Firebase neste projeto é que, com ele, você aprederá a manipular e persistir dados através de um banco de dados não relacional, em tempo real e poderá implementar operações CRUD (Criação, Leitura, Atualização e Remoção) de dados.
-
-## Considerações Gerais do Projeto
-
-* Este projeto deve ser desenvolvido em equipes de 3 integrantes.
-
-* A duração proposta do projeto é de **3 sprints**, com duração de uma semana cada uma.
-
-* Te daremos as **histórias de usuário** com o fim de apresentar a vocês os requisitos e funcionalidades que o usuário deseja.
-
-* O **planejamento é vital**, para ele te recomendamos utilizar o trello, para que possa **escrever suas Definições de Pronto** e **Critérios de Aceitação** para cada história de usuário com o objetivo de determinar, em equipe, **o que fazer** no sprint e **como realizar**.
-
-* Para que todos os membros de sua equipe possam alcançar os objetivos de aprendizagem, vocês deverão determinar qual será a estratégia de desenvolvimento que usarão: divisão por sub-histórias, pair programming, code reviews, etc.
-
-## Restrições Técnicas
-
-* Devem utilizar `flexbox` para posicionar seus elementos. Não está permitido o uso de frameworks de CSS (bootstrap), nem de estilização com `float`.
-
-* Já te demos o layout das telas mobile e desktop. Queremos que repliquem estas telas. O conteúdo, paleta de cores e fontes, depende da temática que vão eleger como equipe. A implementação deste layout deverá ser parte da definição de pronto de suas histórias de usuário.
-
-## Histórias de Usuário
+# Histórias de Usuário
 
 * Como usuário novo, devo poder criar uma conta com email e senha válidos para poder iniciar uma sessão e ingressar na Rede Social.
 
@@ -105,49 +26,21 @@ O objetivo de usar Firebase neste projeto é que, com ele, você aprederá a man
 
 * Te deixamos um exemplo de como definir critérios de aceitação e definições de pronto para uma H.U.
 
-    > Como usuário novo devo poder criar uma conta com email e senha para poder
-    > iniciar sessão.
-    > **Critérios de aceitação**
-    > - Se o email ou senha não forem válidos, ao momento de logar, devo ver uma
-    >   mensagem de erro.
-    > - Deve ser visível se existir alguma mensagem de erro.
-    > - Devo poder ver esta página de registro em celulares e desktop (responsive).
-    > - Não devo necessitar recarregar a página para criar uma conta (SPA).
-    >
-    > **Definição de pronto**
-    > - A funcionalidade cumpre e satisfaz os critérios de aceitação.
-    > - O layout está de acordo com o protótipo.
-    > - O código desta funcionalidade recebeu code review.
-    > - A funcionalidade está publicada para ser testada.
-    > - A funcionalidade foi testada manualmente.
-    > - Foram feitos testes de usabilidade e foi implementado o feedback, se for
-    > necessário
+
+## Desenvolvimento FrontEnd
+
+* Tela mobile
+
+    ![mobile](https://user-images.githubusercontent.com/32286663/56174616-ec9f6100-5fb8-11e9-9edb-d5ef7c251d9c.png)
+
+* Tela Desktop
+
+    ![desktop](https://user-images.githubusercontent.com/32286663/56174626-fcb74080-5fb8-11e9-8854-26e8d9c4e25f.png)
+
+
+
 
 ## Objetivos de aprendizagem
-
-### HTML e CSS
-- [ ] HTML semântico
-- [ ] CSS `flexbox`
-
-### DOM e Web APIs
-- [ ] Manipulação dinâmica do DOM
-- [ ] History API
-- [ ] `localStorage`
-
-### Javascript
-- [ ] Uso de callbacks
-- [ ] Consumo de Promessas
-- [ ] ES modules
-
-### Firebase
-- [ ] Firestore
-- [ ] Firebase Auth
-- [ ] Firebase Hosting
-
-
-### Git e Github
-- [ ] Colaboração no Github
-- [ ] Organização no Trello
 
 ### Boas Práticas de Desenvolvimento
 - [ ] Modularização

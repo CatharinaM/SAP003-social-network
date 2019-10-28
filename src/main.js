@@ -1,7 +1,7 @@
 import Login from './pages/login.js';
 import Cadastro from './pages/cadastro.js';
 import Home from './pages/home.js';
-import Perfil from  './pages/perfil.js';
+
 
 let ultimaPagina = '';
 
@@ -23,13 +23,6 @@ function trocaPagina() {
         document.querySelector('main').innerHTML = Home();
         ultimaPagina = 'home';
         window.home.imprimirPosts(bancoDeDados[id].post);
-      }
-      break;
-    
-    case '#perfil':
-      if (ultimaPagina !== 'perfil') {
-        document.querySelector('main').innerHTML = Perfil();
-        ultimaPagina = 'perfil';
       }
       break;
     

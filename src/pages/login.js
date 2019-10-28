@@ -62,7 +62,6 @@ function Login() {
   <div class='js-botao-login'>
    ${Button({
     id: 'Botão',
-    // class:'js-botao-login',
     title: 'Enviar',
     onClick: enviarLogin,
   })}

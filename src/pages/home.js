@@ -1,8 +1,7 @@
 import Button from '../components/button.js';
 import Textarea from '../components/textarea.js';
-// import Input from '../components/input.js';
 import Card from '../components/card.js';
-//import Menu from '../components/menu.js';
+
 
 
 
@@ -23,7 +22,7 @@ import Card from '../components/card.js';
  function imprimirComentario (coment) {
   document.querySelector('.resp-comentario').innerHTML = '';
 
-  document.querySelector('.resp-comentario').innerHTML += window.home.templateComentario(elem.comentario, elem.id))
+  //document.querySelector('.resp-comentario').innerHTML += window.home.templateComentario(elem.comentario, elem.id))
  //OU
   document.querySelector('.resp-comentario').innerHTML += comentario.textContent
 }*/
@@ -31,7 +30,7 @@ import Card from '../components/card.js';
 function enviarPublicacao(){
   const text = document.querySelector('.js-mensagem-textarea').value;
    if (text) {   //isso que faz só ser publicado quando tiver algo escrito (antes só clicando em publicar já aparecia o card)
-    const posts = home.bancoDeDados[home.id].post; // *aqui e lá embaixo a mesma (não entendi mto bem)
+    const posts = home.bancoDeDados[home.id].post; 
 
     const mensagem ={
     postagem: document.querySelector('.js-mensagem-textarea').value,
@@ -64,9 +63,9 @@ function imprimirPosts (posts) {
   console.log(home)
   console.log(home.id)
   console.log(home.banco)
-  let posts = home.bancoDeDados[home.id].post; // *essa parte que nãoe entendi mto bem (é o caminho para chegar a post?) (essa variavel tb está na fç enviarPublicacao)
+  let posts = home.bancoDeDados[home.id].post; 
   let deletando = posts.filter(elem => {
-    return  elem.id != idPost // na hr entendi, agr não mto
+    return  elem.id != idPost 
   })
 
   
@@ -79,33 +78,33 @@ function imprimirPosts (posts) {
 
 function editarPublicacao (event){
   const postId = event.target.dataset.id;
-  const paragrafo = document.querySelector(`p[data-id='${postId}']`); // estudar isso
+  const paragrafo = document.querySelector(`p[data-id='${postId}']`); 
   paragrafo.contentEditable  = 'true';
-  paragrafo.focus() // estudar esses: focus (é para dar o foco, quando você clica em um campo para digitar algo.) e onblur (é para salvar quando tirar do foco)
+  paragrafo.focus() //focus (é para dar o foco, quando você clica em um campo para digitar algo.) e onblur (é para salvar quando tirar do foco)
   paragrafo.onblur = () => {
     paragrafo.contentEditable  = 'false';
-// tentei if/else ou mudando a ordem das duas linhas acima e não pegou (não achei a ordem mto uau)
+
     
-    const postIndex = home.bancoDeDados[home.id].post.findIndex(post => post.id == postId) // estudar findIndex: retorna o índice no array do primeiro elemento que satisfizer a função de teste provida. Caso contrário, retorna -1, indicando que nenhum elemento passou no teste.
-    home.bancoDeDados[home.id].post[postIndex].postagem = paragrafo.textContent; // estudar textContent: serve para obter o conteúdo de texto de um elemento
-    // *não entendi mto bem essas duas linhas acima
+    const postIndex = home.bancoDeDados[home.id].post.findIndex(post => post.id == postId) //  findIndex: retorna o índice no array do primeiro elemento que satisfizer a função de teste provida. Caso contrário, retorna -1, indicando que nenhum elemento passou no teste.
+    home.bancoDeDados[home.id].post[postIndex].postagem = paragrafo.textContent; // textContent: serve para obter o conteúdo de texto de um elemento
+    
     window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.bancoDeDados));
   }
 }
 
 
-/*function templateComentario(comentario, postId){
-  const template = `
-  <div class= ''>
-  <p data-id='${postId}'>${comentario}</p> 
-   ${Textarea({
-    class: 'js-mensagem-textarea',
-    placeholder: 'Escreva aqui seu comentário',
-    type: 'text',
-   })}
-  </div>`
-  return `${Card({children: templateComentario})}`
-}*/ 
+// function templateComentario(comentario, postId){
+//   const template = `
+//   <div class= ''>
+//   <p data-id='${postId}'>${comentario}</p> 
+//    ${Textarea({
+//     class: 'js-mensagem-textarea',
+//     placeholder: 'Escreva aqui seu comentário',
+//     type: 'text',
+//    })}
+//   </div>`
+//   return `${Card({children: templateComentario})}`
+// }
   
 
 
@@ -115,19 +114,16 @@ function template(postagem, postId){
   <p data-id='${postId}'>${postagem}</p> 
   ${Button({
     id: postId,
-    // class: 'js-botao-editar'
     title: 'Editar',
     onClick: editarPublicacao,
   })}
   ${Button({
     id: postId,
-    // class: 'js-botao-deletar'
     title: 'Deletar',
     onClick: deletarPublicacao,
   })}
   ${Button({
     id: 'Botão',
-    // class: 'js-botao-comentar'
     title: 'Comentar',
     //onClick: comentarPublicação,
   })}
@@ -157,7 +153,6 @@ function Home() {
 <div class='js-botao-publicar'>
     ${Button({
       id: 'Botão',
-      //class: 'js-botao-publicar'
       title: 'Publicar',
       onClick: enviarPublicacao,
     })}
@@ -173,8 +168,8 @@ function Home() {
     <p></p>
     </article> 
 
-    <p><a href="#login">Sair</a> </p>
-    <p><a href="#perfil">Perfil</a> </p>
+    <p class="nav-link"><a href="#login">Sair</a> </p>
+
 </div>
   `;
 
@@ -187,40 +182,9 @@ export default Home;
 window.home = {
   template: template,
   imprimirPosts: imprimirPosts,
+  //imprimirComentario:imprimirComentario,
   id: JSON.parse(localStorage.getItem('usuarioLogado')),
   bancoDeDados: JSON.parse(localStorage.getItem('colecaoDeUsuarios'))
 }
 
-  // <ul>
-  //   <li>
-  //     ${Input({ dataId: post.id, class: 'js-text', type: 'text', placeholder: 'Comentar aqui' })}
-  //     ${Button({ dataId: post.id, title: 'Comentário', /*onClick: sendComment*/})}
-  //   </li>
-  //     ${post.comments.map(comment => `<li>${comment.text}</li>`).join('')}
-  // </ul>
-
-
-//INSERIR COMENTÁRIOS AOS POSTS FIXADOS
-// const pegarComentario = JSON.parse(localStorage.getItem('comentarioDoPost'));
-// if (!Array.isArray(pegarComentario)) {
-//   pegarComentario = [];
-// }
-
-// const comentario = 
-
-//  mensagem.comentario
-
-// BOTÃO DO LIKE (USAR O REDUCE?)
-
-// function exibirMenu(){
-// var veri = 1;
-// var trigger = document.getElementById('menu-trigger').addEventListener("click",function(){
-// var menu = document.getElementById('menu-hidde');
-// if (veri == 1) {
-// menu.style.left = "0px";
-// veri = 0;
-// }else{
-// menu.style.left = "-100%";
-// veri = 1;
-//  }
-// }
+ 

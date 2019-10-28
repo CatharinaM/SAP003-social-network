@@ -64,7 +64,6 @@ function Cadastro() {
   <div class='js-botao-cadastrar'>
      ${Button({
     id: 'botãoCadastro',
-    //class: 'js-botao-cadastrar',
     title: 'Cadastrar',
     onClick: enviarCadastro,
   })}

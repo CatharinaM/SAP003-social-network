@@ -1,13 +1,13 @@
 import Login from './pages/login.js';
 import Cadastro from './pages/cadastro.js';
 import Home from './pages/home.js';
-
+import profile from './pages/perfil.js';
 
 let ultimaPagina = '';
 
-function trocaPagina() {
+function chancesPages() {
   const id = JSON.parse(localStorage.getItem('usuarioLogado'));
-  const bancoDeDados = JSON.parse(localStorage.getItem('colecaoDeUsuarios')); 
+  const database = JSON.parse(localStorage.getItem('colecaoDeUsuarios'));
 
   switch (window.location.hash) {
     case '#cadastro':
@@ -17,15 +17,20 @@ function trocaPagina() {
       }
       break;
 
-
     case '#home':
       if (ultimaPagina !== 'home') {
         document.querySelector('main').innerHTML = Home();
         ultimaPagina = 'home';
-        window.home.imprimirPosts(bancoDeDados[id].post);
+        window.home.printPosts(database[id].post);
       }
       break;
-    
+
+    case '#perfil':
+      if (ultimaPagina !== 'perfil') {
+        document.querySelector('main').innerHTML = profile();
+        ultimaPagina = 'perfil';
+      }
+      break;
 
     default:
       if (ultimaPagina !== 'login') {
@@ -37,8 +42,8 @@ function trocaPagina() {
 }
 
 function init() {
-  window.addEventListener('hashchange', trocaPagina);
-  trocaPagina();
+  window.addEventListener('hashchange', chancesPages);
+  chancesPages();
 }
 
 window.addEventListener('load', init);

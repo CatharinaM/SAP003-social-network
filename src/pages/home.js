@@ -1,30 +1,31 @@
 import Button from '../components/button.js';
 import Textarea from '../components/textarea.js';
 import Card from '../components/card.js';
- 
-function enviarPublicacao(){
-  const text = document.querySelector('.js-mensagem-textarea').value;
-   if (text) {   
-    const posts = home.bancoDeDados[home.id].post; 
 
-    const mensagem ={
-    postagem: document.querySelector('.js-mensagem-textarea').value,
+
+ 
+function subimitPublication(){
+  const text = document.querySelector('.js-message-textarea').value;
+   if (text) {   
+    const posts = home.database[home.id].post; 
+
+    const  message={
+    postagem: document.querySelector('.js-message-textarea').value,
     likes: 0,
     privacidade: 'publico',
     id: new Date().getTime(),
     comentario:[]
   }
+   posts.unshift(message);
 
-   posts.unshift(mensagem);
+   window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.database));
 
-   window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.bancoDeDados));
-
-   home.imprimirPosts(posts);
-   document.querySelector('.js-mensagem-textarea').value = ''; 
+   home.printPosts(posts);
+   document.querySelector('.js-message-textarea').value = ''; 
   }        
 }
 
-function imprimirPosts (posts) {
+function printPosts (posts) {
   document.querySelector('.resp').innerHTML = '';  
 
   posts.map( elem => 
@@ -32,21 +33,21 @@ function imprimirPosts (posts) {
   )
 }
 
-function deletarPublicacao(event){
+function deletePublication(event){
   const idPost = event.target.dataset.id
-  let posts = home.bancoDeDados[home.id].post; 
+  let posts = home.database[home.id].post; 
   let deletando = posts.filter(elem => {
     return  elem.id != idPost 
   })
 
-  home.bancoDeDados[home.id].post = deletando
+  home.database[home.id].post = deletando
 
-  window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.bancoDeDados));
+  window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.database));
 
-  home.imprimirPosts(deletando);
+  home.printPosts(deletando);
 }
 
-function editarPublicacao (event){
+function editPublication (event){
   const postId = event.target.dataset.id;
   const paragrafo = document.querySelector(`p[data-id='${postId}']`); 
   paragrafo.contentEditable  = 'true';
@@ -54,10 +55,10 @@ function editarPublicacao (event){
   paragrafo.onblur = () => {
     paragrafo.contentEditable  = 'false';
 
-    const postIndex = home.bancoDeDados[home.id].post.findIndex(post => post.id == postId) 
-    home.bancoDeDados[home.id].post[postIndex].postagem = paragrafo.textContent; 
+    const postIndex = home.database[home.id].post.findIndex(post => post.id == postId) 
+    home.database[home.id].post[postIndex].postagem = paragrafo.textContent; 
     
-    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.bancoDeDados));
+    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.database));
   }
 }
 
@@ -68,12 +69,12 @@ function template(postagem, postId){
   ${Button({
     id: postId,
     title: 'Editar',
-    onClick: editarPublicacao,
+    onClick: editPublication,
   })}
   ${Button({
     id: postId,
     title: 'Deletar',
-    onClick: deletarPublicacao,
+    onClick: deletePublication,
   })}
  
   </div>`
@@ -84,9 +85,10 @@ function template(postagem, postId){
 function Home() {
   const template = `
   <div class="tam-header">
-    <header class='titulo-header'> 
+    <header class='title-header'> 
       <h1>Escamb</h1>
       <a class="nav-link" href="#login">Sair</a>
+      <a class="nav-lin-profile" href="#Perfil">Perfil</a>
     </header> 
   </div>
 
@@ -96,16 +98,16 @@ function Home() {
     <form> 
 
   ${Textarea({
-    class: 'js-mensagem-textarea',
+    class: 'js-message-textarea',
     placeholder: 'Escreva aqui sua mensagem',
     type: 'text',
    })}
 
-<div class='js-botao-publicar'>
+<div class='js-btn-publish'>
     ${Button({
       id: 'Botão',
       title: 'Publicar',
-      onClick: enviarPublicacao,
+      onClick: subimitPublication,
     })}
   </div>
 
@@ -126,8 +128,8 @@ export default Home;
 
 window.home = {
   template: template,
-  imprimirPosts: imprimirPosts,
+  printPosts: printPosts,
   id: JSON.parse(localStorage.getItem('usuarioLogado')),
-  bancoDeDados: JSON.parse(localStorage.getItem('colecaoDeUsuarios'))
+  database: JSON.parse(localStorage.getItem('colecaoDeUsuarios'))
 }
 

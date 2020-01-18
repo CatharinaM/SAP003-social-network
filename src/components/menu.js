@@ -1,7 +1,6 @@
 function Menu() {
-    const template = `
+  const template = `
     <div class="menu-trigger" id="menu-trigger">
-     <div></div>
     </div>
     <nav class="menu-hidde" id="menu-hidde">
      <ul>
@@ -9,9 +8,7 @@ function Menu() {
        <li>Sair</li>
      </ul>
     </nav> `;
+  return template;
+}
 
-   return template;
-
-  }
-
-  export default Menu;
+export default Menu;

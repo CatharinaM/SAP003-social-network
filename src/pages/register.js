@@ -4,14 +4,14 @@ import Button from '../components/button.js';
 
 function subimitRegister() {
 
-  let  collection = localStorage.getItem('colecaoDeUsuarios');
-  
+  let collection = localStorage.getItem('colecaoDeUsuarios');
+
   collection = JSON.parse(collection);
 
   if (!Array.isArray(collection)) {
     collection = [];
   }
-  
+
 
   const newUser = {
     nome: document.querySelector('.js-nomeCadastro-input').value,
@@ -24,9 +24,9 @@ function subimitRegister() {
 
   collection.push(newUser);
   localStorage.setItem('colecaoDeUsuarios', JSON.stringify(collection));
-  localStorage.setItem('usuarioLogado', JSON.stringify(newUser));
-  
-  
+  localStorage.setItem('usuarioLogado', JSON.stringify(newUser.id));
+
+
   window.location.hash = '#login';
 }
 

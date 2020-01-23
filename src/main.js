@@ -1,5 +1,5 @@
 import Login from './pages/login.js';
-import Cadastro from './pages/cadastro.js';
+import Register from './pages/register.js';
 import Home from './pages/home.js';
 import profile from './pages/perfil.js';
 
@@ -12,7 +12,7 @@ function chancesPages() {
   switch (window.location.hash) {
     case '#cadastro':
       if (ultimaPagina !== 'cadastro') {
-        document.querySelector('main').innerHTML = Cadastro();
+        document.querySelector('main').innerHTML = Register();
         ultimaPagina = 'cadastro';
       }
       break;

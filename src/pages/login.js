@@ -1,33 +1,33 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 
-window. validateLogin = (collection, user) => {
+window.validateLogin = (collection, user) => {
   for (let i = 0; i < collection.length; i += 1) {
-    if ( user. registrationEmail === collection[i].email
-      &&  user.passwordRegister === collection[i].password) {
+    if (user.registrationEmail === collection[i].email
+      && user.passwordRegister === collection[i].password) {
       return collection[i].id;
     }
   }
-  return false;
+  return -1;
+
 };
 
 function subimitLongin() {
-  const  user = {
-     registrationEmail: document.querySelector('.js-email-input').value,
-     passwordRegister: document.querySelector('.js-password-input').value,
+  const user = {
+    registrationEmail: document.querySelector('.js-email-input').value,
+    passwordRegister: document.querySelector('.js-password-input').value,
   };
 
   const collection = JSON.parse(localStorage.getItem('colecaoDeUsuarios'));
-  if ( user. registrationEmail &&  user.passwordRegister) {
 
-    if (window. validateLogin(collection,  user)) {
-      const id = window. validateLogin(collection,  user)
+  if (user.registrationEmail && user.passwordRegister) {
+    if (window.validateLogin(collection, user) >= 0) {
+      const id = window.validateLogin(collection, user)
       localStorage.setItem('usuarioLogado', JSON.stringify(id));
       window.location.hash = '#home';
     } else {
       window.alert('E-mail ou senha inválidos');
     }
-
   } else {
     window.alert('Preencha e-mail e senha');
   }

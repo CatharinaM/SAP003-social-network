@@ -3,41 +3,46 @@ import Textarea from '../components/textarea.js';
 import Card from '../components/card.js';
 
 
- 
-function subimitPublication(){
+
+function subimitPublication() {
   const text = document.querySelector('.js-message-textarea').value;
-   if (text) {   
-    const posts = home.database[home.id].post; 
 
-    const  message={
-    postagem: document.querySelector('.js-message-textarea').value,
-    likes: 0,
-    privacidade: 'publico',
-    id: new Date().getTime(),
-    comentario:[]
+  if (text) {
+
+    const id = JSON.parse(localStorage.getItem('usuarioLogado'))
+    const posts = home.database[id].post;
+
+    const message = {
+      postagem: document.querySelector('.js-message-textarea').value,
+      likes: 0,
+      privacidade: 'publico',
+      id: new Date().getTime(),
+      comentario: []
+    }
+    posts.unshift(message);
+
+    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.database));
+
+    home.printPosts(posts);
+    document.querySelector('.js-message-textarea').value = '';
   }
-   posts.unshift(message);
-
-   window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.database));
-
-   home.printPosts(posts);
-   document.querySelector('.js-message-textarea').value = ''; 
-  }        
 }
 
-function printPosts (posts) {
-  document.querySelector('.resp').innerHTML = '';  
+function printPosts(posts) {
+  document.querySelector('.resp').innerHTML = '';
+  console.log(posts)
 
-  posts.map( elem => 
+
+  posts.map(elem =>
     document.querySelector('.resp').innerHTML += window.home.template(elem.postagem, elem.id)
   )
 }
 
-function deletePublication(event){
+function deletePublication(event) {
   const idPost = event.target.dataset.id
-  let posts = home.database[home.id].post; 
+  let posts = home.database[home.id].post;
   let deletando = posts.filter(elem => {
-    return  elem.id != idPost 
+    return elem.id != idPost
   })
 
   home.database[home.id].post = deletando
@@ -47,22 +52,22 @@ function deletePublication(event){
   home.printPosts(deletando);
 }
 
-function editPublication (event){
+function editPublication(event) {
   const postId = event.target.dataset.id;
-  const paragrafo = document.querySelector(`p[data-id='${postId}']`); 
-  paragrafo.contentEditable  = 'true';
-  paragrafo.focus() 
+  const paragrafo = document.querySelector(`p[data-id='${postId}']`);
+  paragrafo.contentEditable = 'true';
+  paragrafo.focus()
   paragrafo.onblur = () => {
-    paragrafo.contentEditable  = 'false';
+    paragrafo.contentEditable = 'false';
 
-    const postIndex = home.database[home.id].post.findIndex(post => post.id == postId) 
-    home.database[home.id].post[postIndex].postagem = paragrafo.textContent; 
-    
+    const postIndex = home.database[home.id].post.findIndex(post => post.id == postId)
+    home.database[home.id].post[postIndex].postagem = paragrafo.textContent;
+
     window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.database));
   }
 }
 
-function template(postagem, postId){
+function template(postagem, postId) {
   const template = `
   <div class= 'container-postagen'>
   <p data-id='${postId}'>${postagem}</p> 
@@ -78,8 +83,8 @@ function template(postagem, postId){
   })}
  
   </div>`
-  
-  return `${Card({children: template})}`
+
+  return `${Card({ children: template })}`
 }
 
 function Home() {
@@ -101,14 +106,14 @@ function Home() {
     class: 'js-message-textarea',
     placeholder: 'Escreva aqui sua mensagem',
     type: 'text',
-   })}
+  })}
 
 <div class='js-btn-publish'>
     ${Button({
-      id: 'Botão',
-      title: 'Publicar',
-      onClick: subimitPublication,
-    })}
+    id: 'Botão',
+    title: 'Publicar',
+    onClick: subimitPublication,
+  })}
   </div>
 
     </form>

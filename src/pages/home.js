@@ -8,9 +8,9 @@ function subimitPublication() {
   const text = document.querySelector('.js-message-textarea').value;
 
   if (text) {
-
+    const database = JSON.parse(localStorage.getItem('colecaoDeUsuarios'))
     const id = JSON.parse(localStorage.getItem('usuarioLogado'))
-    const posts = home.database[id].post;
+    const posts = database[id].post;
 
     const message = {
       postagem: document.querySelector('.js-message-textarea').value,
@@ -21,7 +21,7 @@ function subimitPublication() {
     }
     posts.unshift(message);
 
-    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.database));
+    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(database));
 
     home.printPosts(posts);
     document.querySelector('.js-message-textarea').value = '';
@@ -30,8 +30,6 @@ function subimitPublication() {
 
 function printPosts(posts) {
   document.querySelector('.resp').innerHTML = '';
-  console.log(posts)
-
 
   posts.map(elem =>
     document.querySelector('.resp').innerHTML += window.home.template(elem.postagem, elem.id)
@@ -39,20 +37,22 @@ function printPosts(posts) {
 }
 
 function deletePublication(event) {
+  const database = JSON.parse(localStorage.getItem('colecaoDeUsuarios'))
+  const id = JSON.parse(localStorage.getItem('usuarioLogado'))
   const idPost = event.target.dataset.id
-  let posts = home.database[home.id].post;
-  let deletando = posts.filter(elem => {
-    return elem.id != idPost
-  })
+  let posts = database[id].post;
+  let deletando = posts.filter(elem => elem.id != idPost)
 
-  home.database[home.id].post = deletando
+  database[id].post = deletando
 
-  window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.database));
+  window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(database));
 
   home.printPosts(deletando);
 }
 
 function editPublication(event) {
+  const database = JSON.parse(localStorage.getItem('colecaoDeUsuarios'))
+  const id = JSON.parse(localStorage.getItem('usuarioLogado'))
   const postId = event.target.dataset.id;
   const paragrafo = document.querySelector(`p[data-id='${postId}']`);
   paragrafo.contentEditable = 'true';
@@ -60,10 +60,10 @@ function editPublication(event) {
   paragrafo.onblur = () => {
     paragrafo.contentEditable = 'false';
 
-    const postIndex = home.database[home.id].post.findIndex(post => post.id == postId)
-    home.database[home.id].post[postIndex].postagem = paragrafo.textContent;
+    const postIndex = database[id].post.findIndex(post => post.id == postId)
+    database[id].post[postIndex].postagem = paragrafo.textContent;
 
-    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.database));
+    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(database));
   }
 }
 
@@ -89,10 +89,10 @@ function template(postagem, postId) {
 
 function Home() {
   const template = `
-  <div class="tam-header">
-    <header class='title-header'> 
-      <h1>Escamb</h1>
-      <a class="nav-link" href="#login">Sair</a>
+    <div class="tam-header">
+      <header class='title-header'> 
+        <h1>Escamb</h1>
+        <a class="nav-link" href="#login">Sair</a>
       <a class="nav-lin-profile" href="#Perfil">Perfil</a>
     </header> 
   </div>
@@ -134,7 +134,5 @@ export default Home;
 window.home = {
   template: template,
   printPosts: printPosts,
-  id: JSON.parse(localStorage.getItem('usuarioLogado')),
-  database: JSON.parse(localStorage.getItem('colecaoDeUsuarios'))
 }
 

@@ -1,33 +1,33 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 
-window.validarLogin = (colecao, usuario) => {
-  for (let i = 0; i < colecao.length; i += 1) {
-    if (usuario.emailDoCadastro === colecao[i].email
-      && usuario.passwordDoCadastro === colecao[i].password) {
-      return colecao[i].id;
+window.validateLogin = (collection, user) => {
+  for (let i = 0; i < collection.length; i += 1) {
+    if (user.registrationEmail === collection[i].email
+      && user.passwordRegister === collection[i].password) {
+      return collection[i].id;
     }
   }
-  return false;
+  return -1;
+
 };
 
-function enviarLogin() {
-  const usuario = {
-    emailDoCadastro: document.querySelector('.js-email-input').value,
-    passwordDoCadastro: document.querySelector('.js-password-input').value,
+function subimitLongin() {
+  const user = {
+    registrationEmail: document.querySelector('.js-email-input').value,
+    passwordRegister: document.querySelector('.js-password-input').value,
   };
 
-  const colecao = JSON.parse(localStorage.getItem('colecaoDeUsuarios'));
-  if (usuario.emailDoCadastro && usuario.passwordDoCadastro) {
+  const collection = JSON.parse(localStorage.getItem('colecaoDeUsuarios'));
 
-    if (window.validarLogin(colecao, usuario)) {
-      const id = window.validarLogin(colecao, usuario)
+  if (user.registrationEmail && user.passwordRegister) {
+    if (window.validateLogin(collection, user) >= 0) {
+      const id = window.validateLogin(collection, user)
       localStorage.setItem('usuarioLogado', JSON.stringify(id));
       window.location.hash = '#home';
     } else {
       window.alert('E-mail ou senha inválidos');
     }
-
   } else {
     window.alert('Preencha e-mail e senha');
   }
@@ -42,9 +42,9 @@ function Login() {
   
 
   <div class="container-login2">
-  <h1 class= "título-login">Escamb</h1>
-  <h2 class= "titulo-descricao"> Sua rede de trocas de objetos e experiências </h2>
-  <h3 class= "titulo-descricao"> Bem-vindo(a)!</h3>
+  <h1 class= "title-login">Escamb</h1>
+  <h2 class= "title-description"> Sua rede de trocas de objetos e experiências </h2>
+  <h3 class= "title-description"> Bem-vindo(a)!</h3>
   <form> 
 <div class="inputs">
    ${Input({
@@ -59,17 +59,17 @@ function Login() {
     type: 'password',
   })}
 
-  <div class='js-botao-login'>
+  <div class='js-btn-login'>
    ${Button({
     id: 'Botão',
     title: 'Enviar',
-    onClick: enviarLogin,
+    onClick: subimitLongin,
   })}
    </div>
   </div>
 
     </form>
-    <p class= "titulo-descricao"">Não tem conta? <a href="#cadastro">Cadastre-se</a> </p>
+    <p class= "title-description"">Não tem conta? <a href="#cadastro" > Cadastre-se</a> </p>
     </div>
     </div>
 

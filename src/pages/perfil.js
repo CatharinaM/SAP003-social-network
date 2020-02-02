@@ -3,11 +3,26 @@ import Button from '../components/button.js';
 
 // como colocar opção de foto?
 
-function Perfil() {
+function subimitProfile (event){
+  const x = event.target.dataset.id;
+  const paragraph = document.querySelector(`p[data-id='${postId}']`); 
+  paragraph.contentEditable  = 'true';
+  paragraph.focus() 
+  paragraph.onblur = () => {
+    paragraph.contentEditable  = 'false';
+
+    const postIndex = home.database[home.id].post.findIndex(post => post.id == postId) 
+    home.database[home.id].post[postIndex].postagem = paragraph.textContent; 
+    
+    window.localStorage.setItem('colecaoDeUsuarios', JSON.stringify(home.database));
+  }
+}
+
+function profile() {
     const template = `
     <img src="" alt="">
-    <div class="container-perfil">
-    <h1 class= "título-perfil">Perfil</h1>
+    <div class="container-profile">
+    <h1 class= "title-profile">Perfil</h1>
     <h3> Editar perfil</h3>
     <form> 
 
@@ -32,7 +47,7 @@ function Perfil() {
      ${Button({
       id: 'Botão',
       title: 'Enviar',
-      // onClick: enviarPerfil,
+      onClick: subimitProfile,
     })}
   
       </form>
@@ -44,7 +59,6 @@ function Perfil() {
     return template;
   }
   
-  export default Perfil;
+  export default profile;
   
 
-  //<p class="mensagem-login">Não tem conta? <a href="#cadastro">Cadastre-se</a> </p>

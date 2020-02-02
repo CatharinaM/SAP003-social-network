@@ -15,9 +15,6 @@ window.button = {
   handleClick: (event, callback) => {
     event.preventDefault();
     callback(event);
-
-    // console.log(`Esse é o meu botão ${id}`);
-    // return `Esse é o meu botão ${id}`;
   },
 };
 

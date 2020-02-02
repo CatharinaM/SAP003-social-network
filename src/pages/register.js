@@ -2,40 +2,40 @@ import Input from '../components/input.js';
 import Button from '../components/button.js';
 
 
-function enviarCadastro() {
+function subimitRegister() {
 
-  let colecao = localStorage.getItem('colecaoDeUsuarios');
-  
-  colecao = JSON.parse(colecao);
+  let collection = localStorage.getItem('colecaoDeUsuarios');
 
-  if (!Array.isArray(colecao)) {
-    colecao = [];
+  collection = JSON.parse(collection);
+
+  if (!Array.isArray(collection)) {
+    collection = [];
   }
-  
 
-  const novoUsuario = {
+
+  const newUser = {
     nome: document.querySelector('.js-nomeCadastro-input').value,
     sobrenome: document.querySelector('.js-sobrenomeCadastro-input').value,
     email: document.querySelector('.js-emailCadastro-input').value,
     password: document.querySelector('.js-novaSenhaCadastro-input').value,
     post: [],
-    id: colecao.length
+    id: collection.length
   };
 
-  colecao.push(novoUsuario);
-  localStorage.setItem('colecaoDeUsuarios', JSON.stringify(colecao));
-  localStorage.setItem('usuarioLogado', JSON.stringify(novoUsuario));
-  
-  
+  collection.push(newUser);
+  localStorage.setItem('colecaoDeUsuarios', JSON.stringify(collection));
+  localStorage.setItem('usuarioLogado', JSON.stringify(newUser.id));
+
+
   window.location.hash = '#login';
 }
 
-function Cadastro() {
+function register() {
   const template = `
   <img src="" alt="">
-  <div class="container-cadastro">
-  <h1 class="título-cadastro">Cadastre-se:</h1>
-  <form class="cadastro"> 
+  <div class="container-register">
+  <h1 class="title-register">Cadastre-se:</h1>
+  <form class="register"> 
   
      ${Input({
     class: 'js-nomeCadastro-input',
@@ -61,17 +61,17 @@ function Cadastro() {
     type: 'password',
   })}
   
-  <div class='js-botao-cadastrar'>
+  <div class='js-btn-register'>
      ${Button({
     id: 'botãoCadastro',
     title: 'Cadastrar',
-    onClick: enviarCadastro,
+    onClick: subimitRegister,
   })}
   </div>
   
     </form>
     
-    <p class= "mensagem-cadastro">Já tem conta? <a href="#login">Entrar</a> </p>
+    <p class= "message-register">Já tem conta? <a href="#login">Entrar</a> </p>
     </div>
 
     `;
@@ -79,4 +79,4 @@ function Cadastro() {
   return template;
 }
 
-export default Cadastro;
+export default register;

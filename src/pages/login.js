@@ -36,43 +36,36 @@ function subimitLongin() {
 
 function Login() {
   const template = `
-  
-  <div class="container-login">
-  <img src="maos.png" alt="">
-  
-
-  <div class="container-login2">
-  <h1 class= "title-login">Escamb</h1>
-  <h2 class= "title-description"> Sua rede de trocas de objetos e experiências </h2>
-  <h3 class= "title-description"> Bem-vindo(a)!</h3>
-  <form> 
-<div class="inputs">
-   ${Input({
-    class: 'js-email-input',
-    placeholder: 'Email',
-    type: 'email',
-  })}
-
-   ${Input({
-    class: 'js-password-input',
-    placeholder: 'senha',
-    type: 'password',
-  })}
-
-  <div class='js-btn-login'>
-   ${Button({
-    id: 'Botão',
-    title: 'Enviar',
-    onClick: subimitLongin,
-  })}
-   </div>
-  </div>
-
-    </form>
-    <p class= "title-description"">Não tem conta? <a href="#cadastro" > Cadastre-se</a> </p>
+    <div class="container-login">
+      <img src="/images/maos.png" alt="imagem do logo">
+      <div class="container-login2">
+      <h1 class= "title-login">Escamb</h1>
+      <h2 class= "title-description"> Sua rede de trocas de objetos e experiências </h2>
+      <h3 class= "title-description"> Bem-vindo(a)!</h3>
+      <form>
+        <div class="inputs">
+          ${Input({
+            class: 'js-email-input',
+            placeholder: 'Email',
+            type: 'email',
+          })}
+          ${Input({
+            class: 'js-password-input',
+            placeholder: 'senha',
+            type: 'password',
+          })}
+          <div class='js-btn-login'>
+            ${Button({
+              id: 'Botão',
+              title: 'Enviar',
+              onClick: subimitLongin,
+            })}
+          </div>
+        </div>
+      </form>
+      <p class= "title-description"">Não tem conta? <a href="#cadastro" > Cadastre-se</a> </p>
+      </div>
     </div>
-    </div>
-
   `;
 
   return template;

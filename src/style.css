@@ -3,7 +3,6 @@ body{
   background-color: rgb(24, 6, 19);
 }
 
-
 .title-header{
   background-color: rgb(90, 67, 89);
   display: flex;
@@ -81,7 +80,6 @@ margin-bottom: 10%;
   flex-direction: column;
   width:300px;
 }
-
 
 img{
 width:80%;
@@ -261,3 +259,4 @@ text-align: center;
     text-decoration: none;
     top: 50px;
   }
+}

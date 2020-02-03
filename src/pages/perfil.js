@@ -1,13 +1,11 @@
 import Input from '../components/input.js';
 import Button from '../components/button.js';
 
-// como colocar opção de foto?
-
 function subimitProfile (event){
   const x = event.target.dataset.id;
   const paragraph = document.querySelector(`p[data-id='${postId}']`); 
   paragraph.contentEditable  = 'true';
-  paragraph.focus() 
+  paragraph.focus();
   paragraph.onblur = () => {
     paragraph.contentEditable  = 'false';
 

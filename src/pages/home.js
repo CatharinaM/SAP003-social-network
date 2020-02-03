@@ -2,8 +2,6 @@ import Button from '../components/button.js';
 import Textarea from '../components/textarea.js';
 import Card from '../components/card.js';
 
-
-
 function subimitPublication() {
   const text = document.querySelector('.js-message-textarea').value;
 
@@ -33,15 +31,15 @@ function printPosts(posts) {
 
   posts.map(elem =>
     document.querySelector('.resp').innerHTML += window.home.template(elem.postagem, elem.id)
-  )
+  );
 }
 
 function deletePublication(event) {
-  const database = JSON.parse(localStorage.getItem('colecaoDeUsuarios'))
-  const id = JSON.parse(localStorage.getItem('usuarioLogado'))
-  const idPost = event.target.dataset.id
+  const database = JSON.parse(localStorage.getItem('colecaoDeUsuarios'));
+  const id = JSON.parse(localStorage.getItem('usuarioLogado'));
+  const idPost = event.target.dataset.id;
   let posts = database[id].post;
-  let deletando = posts.filter(elem => elem.id != idPost)
+  let deletando = posts.filter(elem => elem.id != idPost);
 
   database[id].post = deletando
 
@@ -51,8 +49,8 @@ function deletePublication(event) {
 }
 
 function editPublication(event) {
-  const database = JSON.parse(localStorage.getItem('colecaoDeUsuarios'))
-  const id = JSON.parse(localStorage.getItem('usuarioLogado'))
+  const database = JSON.parse(localStorage.getItem('colecaoDeUsuarios'));
+  const id = JSON.parse(localStorage.getItem('usuarioLogado'));
   const postId = event.target.dataset.id;
   const paragrafo = document.querySelector(`p[data-id='${postId}']`);
   paragrafo.contentEditable = 'true';
@@ -69,20 +67,19 @@ function editPublication(event) {
 
 function template(postagem, postId) {
   const template = `
-  <div class= 'container-postagen'>
-  <p data-id='${postId}'>${postagem}</p> 
-  ${Button({
-    id: postId,
-    title: 'Editar',
-    onClick: editPublication,
-  })}
-  ${Button({
-    id: postId,
-    title: 'Deletar',
-    onClick: deletePublication,
-  })}
- 
-  </div>`
+    <div class= 'container-postagen'>
+    <p data-id='${postId}'>${postagem}</p> 
+      ${Button({
+        id: postId,
+        title: 'Editar',
+        onClick: editPublication,
+      })}
+      ${Button({
+        id: postId,
+        title: 'Deletar',
+        onClick: deletePublication,
+      })}
+    </div>`
 
   return `${Card({ children: template })}`
 }
@@ -93,36 +90,27 @@ function Home() {
       <header class='title-header'> 
         <h1>Escamb</h1>
         <a class="nav-link" href="#login">Sair</a>
-      <a class="nav-lin-profile" href="#Perfil">Perfil</a>
-    </header> 
-  </div>
-
-  <div class="container-home">
-    <h1></h1> 
-
-    <form> 
-
-  ${Textarea({
-    class: 'js-message-textarea',
-    placeholder: 'Escreva aqui sua mensagem',
-    type: 'text',
-  })}
-
-<div class='js-btn-publish'>
-    ${Button({
-    id: 'Botão',
-    title: 'Publicar',
-    onClick: subimitPublication,
-  })}
-  </div>
-
+      </header> 
+    </div>
+    <div class="container-home">
+    <form>
+      ${Textarea({
+        class: 'js-message-textarea',
+        placeholder: 'Escreva aqui sua mensagem',
+        type: 'text',
+      })}
+    <div class='js-btn-publish'>
+        ${Button({
+        id: 'Botão',
+        title: 'Publicar',
+        onClick: subimitPublication,
+      })}
+    </div>
     </form>
-
     <article class="resp">
     <p></p>
     </article> 
-
-</div>
+   </div>
   `;
 
   return template;

@@ -1,7 +1,6 @@
 import Login from './pages/login.js';
 import Register from './pages/register.js';
 import Home from './pages/home.js';
-import profile from './pages/perfil.js';
 
 let ultimaPagina = '';
 
@@ -22,13 +21,6 @@ function chancesPages() {
         document.querySelector('main').innerHTML = Home();
         ultimaPagina = 'home';
         window.home.printPosts(database[id].post);
-      }
-      break;
-
-    case '#perfil':
-      if (ultimaPagina !== 'perfil') {
-        document.querySelector('main').innerHTML = profile();
-        ultimaPagina = 'perfil';
       }
       break;
 

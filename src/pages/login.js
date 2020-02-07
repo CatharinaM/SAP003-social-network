@@ -37,7 +37,7 @@ function subimitLongin() {
 function Login() {
   const template = `
     <div class="container-login">
-      <img src="/images/maos.png" alt="imagem do logo">
+      <img src="https://github.com/CatharinaM/SAP003-social-network/blob/master/src/images/maos.png?raw=true" alt="imagem do logo">
       <div class="container-login2">
       <h1 class= "title-login">Escamb</h1>
       <h2 class= "title-description"> Sua rede de trocas de objetos e experiências </h2>
